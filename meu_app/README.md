@@ -1,16 +1,12 @@
-# meu_app
+# University News App - Código Fonte
 
-A new Flutter project.
+Este repositório contém o código-fonte do projeto **University News App**, desenvolvido com Flutter e Dart.
 
-## Getting Started
+## Instruções para Iniciar
 
-This project is a starting point for a Flutter application.
+Para começar a usar ou contribuir para este projeto, siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
-A few resources to get you started if this is your first Flutter project:
+### 1. **Clonar o Repositório**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone https://github.com/seu_usuario/university-news-app.git
