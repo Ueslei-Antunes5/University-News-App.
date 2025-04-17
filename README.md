@@ -1,5 +1,5 @@
 <h1 align="center">University News App - Aplicativo de Notícias Universitárias 📰</h1>
-<img alt="Status" src="https://img.shields.io/badge/Status-Em_Desenvolvimento-green">
+<img alt="Status" src="https://img.shields.io/badge/Status-Finalizado-blue">
 
 ## Descrição
 
@@ -16,6 +16,6 @@ O **University News App** é um aplicativo desenvolvido no contexto da disciplin
 - **Dart**: Linguagem de programação utilizada no desenvolvimento do aplicativo.
 
 ### Status do Projeto:
-Este projeto está em andamento, e atualmente estamos implementando a estrutura básica do aplicativo e trabalhando nas funcionalidades iniciais.
+Este projeto está finalizado, e atualmente nós implementamos a estrutura básica do aplicativo e trabalhando nas funcionalidades iniciais que foram visto em sala de aula.
 
 ---
