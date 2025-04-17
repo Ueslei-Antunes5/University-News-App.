@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Image.asset("assets/images/modelo-de-design-de-logotipo-de-escola-gradiente.png", height: 150,),
+             Image.asset("assets/images/modelo-de-design-de-logotipo-de-escola-gradiente.png", height: 250,),
               const Text(
                 'Bem-vindo ao App!',
                 style: TextStyle(
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                   color: Color.fromARGB(255, 69, 125, 214),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(

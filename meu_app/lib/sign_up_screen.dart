@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:meu_app/ProfilePage.dart';
 import 'package:meu_app/navigation.dart';
 
-//falta criar duas opcoes signup como media ou como visitante e o botao de signup
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
-
-  static void hash(BuildContext context, MaterialPageRoute materialPageRoute) {}
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
@@ -25,7 +21,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign Up Screen')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(33, 150, 243, 1),
+        title: const Text(
+          'Cadastro',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -33,60 +38,55 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Nome',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  hintText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
+                'Preencha os campos abaixo para criar sua conta:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(33, 150, 243, 1),
                 ),
+              ),
+              const SizedBox(height: 24.0),
+              _buildTextField(
+                controller: nameController,
+                label: 'Nome',
+                hintText: 'Digite seu nome',
               ),
               const SizedBox(height: 16.0),
-              const Text(
-                'E-mail',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextField(
+              _buildTextField(
                 controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: 'Digite seu e-mail',
-                  border: OutlineInputBorder(),
-                ),
+                label: 'E-mail',
+                hintText: 'Digite seu e-mail',
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16.0),
-              const Text(
-                'Telefone',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextField(
+              _buildTextField(
                 controller: phoneController,
-                decoration: const InputDecoration(
-                  hintText: 'Digite seu telefone',
-                  border: OutlineInputBorder(),
-                ),
+                label: 'Telefone',
+                hintText: 'Digite seu telefone',
                 keyboardType: TextInputType.phone,
               ),
               const SizedBox(height: 16.0),
-              const Text(
-                'Senha',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextField(
+              _buildTextField(
                 controller: passwordController,
-                decoration: const InputDecoration(
-                  hintText: 'Digite sua senha',
-                  border: OutlineInputBorder(),
-                ),
+                label: 'Senha',
+                hintText: 'Digite sua senha',
                 obscureText: true,
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 24.0),
+              const Text(
+                'Selecione seu tipo de conta:',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 8.0),
               Row(
                 children: [
                   Checkbox(
                     value: isReporter,
+                    activeColor: const Color.fromRGBO(33, 150, 243, 1),
                     onChanged: (bool? value) {
                       setState(() {
                         isReporter = value ?? false;
@@ -94,13 +94,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       });
                     },
                   ),
-                  const Text('Reporter'),
+                  const Text(
+                    'Reporter',
+                    style: TextStyle(fontSize: 14, color: Colors.black),
+                  ),
                 ],
               ),
               Row(
                 children: [
                   Checkbox(
                     value: isVisitor,
+                    activeColor: const Color.fromRGBO(33, 150, 243, 1),
                     onChanged: (bool? value) {
                       setState(() {
                         isVisitor = value ?? false;
@@ -108,14 +112,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       });
                     },
                   ),
-                  const Text('Visitante'),
+                  const Text(
+                    'Visitante',
+                    style: TextStyle(fontSize: 14, color: Colors.black),
+                  ),
                 ],
               ),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: 32.0),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Ação ao pressionar o botão de Sign Up
+                    // Validação dos campos
                     if (nameController.text.isEmpty ||
                         emailController.text.isEmpty ||
                         phoneController.text.isEmpty ||
@@ -143,30 +150,68 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     );
                     Future.delayed(const Duration(seconds: 1), () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ProfilePage(),
+                          builder: (context) => const NavigationScreen(),
                         ),
                       );
                     });
                   },
-                  child: ElevatedButton(
-          onPressed: () {
-            // Simular cadastro bem-sucedido e navegar para a tela de navegação
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const NavigationScreen()),
-            );
-          },
-          child: const Text('Sign Up'),
-        ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(33, 150, 243, 1),
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'Cadastrar',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  // Método para criar campos de texto estilizados
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required String hintText,
+    TextInputType keyboardType = TextInputType.text,
+    bool obscureText = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8.0),
+        TextField(
+          controller: controller,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            hintText: hintText,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Color.fromRGBO(33, 150, 243, 1),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
