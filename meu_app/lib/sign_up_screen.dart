@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meu_app/ProfilePage.dart';
+import 'package:meu_app/navigation.dart';
 
 //falta criar duas opcoes signup como media ou como visitante e o botao de signup
 
@@ -7,6 +9,8 @@ class SignUpScreen extends StatefulWidget {
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
+
+  static void hash(BuildContext context, MaterialPageRoute materialPageRoute) {}
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
@@ -21,9 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up Screen'),
-      ),
+      appBar: AppBar(title: const Text('Sign Up Screen')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -102,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onChanged: (bool? value) {
                       setState(() {
                         isVisitor = value ?? false;
-                         if (isVisitor) isReporter = false; // Desmarca reporter
+                        if (isVisitor) isReporter = false; // Desmarca reporter
                       });
                     },
                   ),
@@ -119,23 +121,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         phoneController.text.isEmpty ||
                         passwordController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Preencha todos os campos!')),
+                        const SnackBar(
+                          content: Text('Preencha todos os campos!'),
+                        ),
                       );
                       return;
                     }
 
                     if (!isReporter && !isVisitor) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Selecione Reporter ou Visitante!')),
+                        const SnackBar(
+                          content: Text('Selecione Reporter ou Visitante!'),
+                        ),
                       );
                       return;
                     }
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Cadastro realizado com sucesso!')),
+                      const SnackBar(
+                        content: Text('Cadastro realizado com sucesso!'),
+                      ),
                     );
+                    Future.delayed(const Duration(seconds: 1), () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    });
                   },
-                  child: const Text('Sign Up'),
+                  child: ElevatedButton(
+          onPressed: () {
+            // Simular cadastro bem-sucedido e navegar para a tela de navegação
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const NavigationScreen()),
+            );
+          },
+          child: const Text('Sign Up'),
+        ),
                 ),
               ),
             ],

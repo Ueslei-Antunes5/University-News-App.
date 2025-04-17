@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'sign_up_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,51 +12,90 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const HomeScreen(), // Use uma classe separada para a tela inicial
+      debugShowCheckedModeBanner: false,
+      title: 'Example App',
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      home: const HomePage(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {  
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Example App'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // navegação para a tela de login
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                );
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF3EDF7),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+             Image.asset("assets/images/modelo-de-design-de-logotipo-de-escola-gradiente.png", height: 150,),
+              const Text(
+                'Bem-vindo ao App!',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 69, 125, 214),
+                ),
               ),
-              child: const Text(
-                'Login',
-                style: TextStyle(color: Colors.black),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 69, 125, 214),
+                  minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'Entrar',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
               ),
-            ),
-           ],
+              const SizedBox(height: 16),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
+                    ),
+                  );
+                },
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                  minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'Cadastrar-se',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+              ),
+            ],
           ),
+        ),
       ),
     );
   }
 }
-  
-
